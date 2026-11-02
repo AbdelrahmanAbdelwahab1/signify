@@ -1,0 +1,27 @@
+# Requirements for qwencleo_asr.py
+# Use a SEPARATE virtual environment: qwen-asr pins its own transformers
+# version and may break your Whisper environment.
+#
+#   python -m venv .venv-qwen
+#   .venv-qwen\Scripts\activate        (Windows)
+#   pip install -r requirements.txt
+
+# --- Core (all commands) ---
+qwen-asr           # Qwen3ASRModel; pulls in transformers and torch
+numpy
+soundfile          # reading/writing WAV/FLAC, avoids torchcodec/FFmpeg
+librosa            # resampling fallback and mp3/m4a input (mp3/m4a also need ffmpeg)
+
+# --- eval command ---
+datasets           # load_dataset, Audio(decode=False)
+jiwer              # WER / CER
+tqdm               # progress bars
+
+# --- Optional ---
+sounddevice        # only for the `mic` command
+
+# --- GPU note ---
+# torch is installed as a dependency of qwen-asr. For CUDA, install the matching
+# build first, e.g.:
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu124
+# torchaudio is optional (used for resampling; librosa is the fallback).

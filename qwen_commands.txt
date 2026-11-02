@@ -1,0 +1,2 @@
+.\.venv-qwen\Scripts\Activate.ps1
+ python qwencleo_asr.py transcribe eyad.ogg
